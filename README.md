@@ -192,5 +192,86 @@ ANAGER') AND DNO NOT IN(110,112) AND SAL BETWEEN 25000 AND 50000 AND SAL*12 NOT 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------08/04/2024-----------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------10/04/2024-----------------------------------------------------------------------------------------------------------------------
+
+
+1) WAQTD THE DETAILS OF EMP ALONG WITH 12*SAL IF EMP IS GETTING 7000000 SALARY 
+
+--->   SELECT *  , SAL*12 AS "ANNUAL SALARY" FROM EMP WHERE SAL*12 LIKE '_______.__';
+
+2) WAQTD THE DETAILS OF EMP WHO WERE HIRED DURING NOV OR DEC 
+
+-->SELECT * FROM EMP WHERE DOJ LIKE '%-11-%' OR DOJ LIKE '%-12-%';
+
+3) WAQTD WHO ARE BORN DURING THE MONTH OF APRIL , MAY , JUNE ;
+
+-->  SELECT * FROM EMP WHERE BIRTHDATE LIKE '%-04-%' OR BIRTHDATE LIKE '%-05-%' OR  BIRTHDATE LIKE '%-06-%';
+
+4) WAQTD FIRST_NAME , LAST_NAME FROM EMP IF EMP FIRST_NAME STARTS WITH H OR A AND LAST NAME ENDS WITH Y OR I;
+
+-->  SELECT FIRST_NAME , LAST_NAME FROM EMP WHERE (FIRST_NAME LIKE 'H%' OR FIRST_NAME LIKE 'A%') AND (LAST_NAME LIKE '%Y' OR LAST_NAME LIKE '%I');
+
+5) WAQTD FIRST_NAME , LAST_NAME , JOB ,DOJ, COMM ,DNO FROM EMP IF THE EMP FIRST_NAME DOES NOT START WITH S (BY USING NOT LIKE FUNCTION)
+
+-->  SELECT FIRST_NAME , LAST_NAME , JOB , DOJ , COMM , DNO FROM EMP WHERE FIRST_NAME NOT LIKE 'S%';
+
+
+6) WAQTD DETAILS OF EMP IF THE EMP IS WORKING AS SALESMAN OR DEVELOPER OR MANAGAER OR TESTER BUT NOT IN DEPT 110 ,111  AND THE EMP MUST NOT GET ANY COMM BUT MUST HAVE THE REPORTING MANAGER AND THE SALARY RANGE MUST BETWEEN 20000 AND 60000 BUT COMM MUST NOT BE IN THE RANGE OF 10000 AND 20000 IF THE EMP WAS HIRED DURING THE YEAR 2016 OR 2017 OR 2020 BUT NOT BORN IN 1985
+
+-->  TRY 1)  SELECT * FROM EMP WHERE JOB IN('SALESMAN','DEVELOPER' , 'MANAGER' , 'TESTER') AND DNO NOT IN(110,111) AND (COMM IS NULL) AND (MGR IS NOT NULL) AND (S
+AL BETWEEN 20000 AND 60000) AND (COMM NOT BETWEEN 10000 AND 20000) AND DOJ LIKE '2016%' OR DOJ LIKE '2017%' OR DOJ LIKE '2020' AND BIRTHDATE NOT LIKE '1985%';
+
+--> OUTPUT 
+--->  SELECT * FROM EMP WHERE JOB IN('SALESMAN','DEVELOPER' , 'MANAGER' , 'TESTER') AND DNO NOT IN(110,111) AND (COMM IS NULL) AND (MGR IS NOT NULL) AND (SAL BETWEEN 20000 AND 60000) AND (COMM NOT BETWEEN 10000 AND 20000) AND (DOJ LIKE '2016%' OR DOJ LIKE '2017%' OR DOJ LIKE '2020') AND BIRTHDATE NOT LIKE '198
+5%';
+
+
+
+7) WAQTD DETAILS OF EMP WHOSE NAME MUST NOT START WITH A OR K;
+
+--> SELECT * FROM EMP WHERE FIRST_NAME NOT LIKE 'A%' AND FIRST_NAME NOT LIKE 'K%';
+
+8) WAQTD NAMES OF STUDENT WHOSE NAME HAVE ALTEAST ONE %  .
+
+--> SELECT * FROM STUD1 WHERE NAME LIKE '%\\%%';
+	mysql> SELECT * FROM STUD1 WHERE NAME LIKE '%\\%%';
++------+----------------------+
+| ID   | NAME                 |
++------+----------------------+
+|    1 | SURESH%MISTRY        |
+|    4 | HITESH%MISTRY%SHANTI |
++------+----------------------+
+
+
+
+9) WAQTD NAMES OF STUDENT HAS ATLEAST ONE _ UNDERSCORE;
+
+-- >  SELECT * FROM STUD1 WHERE NAME LIKE '%\_%';
++------+-----------------+
+| ID   | NAME            |
++------+-----------------+
+|    2 | KRISNNA_MISTRY  |
+|    3 | TWINKLE_MIS_TRY |
++------+-----------------+
+
+
+10) WAQTD NAMES OF STUDENT HAS ATLEAST 2 % IN IT 
+-->  SELECT * FROM STUD1 WHERE NAME LIKE '%\%%\%%';
+
++------+----------------------+
+| ID   | NAME                 |
++------+----------------------+
+|    4 | HITESH%MISTRY%SHANTI |
++------+----------------------+
+
+11) WAQTD NAMES OF STUDENT HAS ATLEAST 2 _ IN IT;
+
+-->  SELECT * FROM STUD1 WHERE NAME LIKE '%\_%\_%';
+
++------+-----------------+
+| ID   | NAME            |
++------+-----------------+
+|    3 | TWINKLE_MIS_TRY |
++------+-----------------+
+
 
