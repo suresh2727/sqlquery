@@ -275,3 +275,182 @@ AL BETWEEN 20000 AND 60000) AND (COMM NOT BETWEEN 10000 AND 20000) AND DOJ LIKE 
 +------+-----------------+
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------11-04-2024--------------------------------------------------------------------------------
+
+AGGREGRATOR FUNCTION 1)MAX(column_name) 2) MIN() 3)COUNT() 4)SUM() 5)AVG()  
+1) WAQTD MAX SAL AND MIN SAL FROM EMP TABLE; 
+
+--> SELECT MAX(SAL) , MIN(SAL) FROM EMP;
++-----------+----------+
+| MAX(SAL)  | MIN(SAL) |
++-----------+----------+
+| 500000.00 | 30000.00 |
++-----------+----------+
+
+2) WAQTD TOTAL SAL AND AVG SAL GIVEN TO ALL THE SALESMAN
+
+-->
+mysql> SELECT SUM(SAL) , AVG(SAL) FROM EMP WHERE JOB='SALESMAN';
++-----------+--------------+
+| SUM(SAL)  | AVG(SAL)     |
++-----------+--------------+
+| 130000.00 | 43333.333333 |
+
+
+3) WAQTD NUMBER OF EMP WORKING IN DNO113
+
+-->  SELECT COUNT(*) FROM EMP WHERE DNO=113;
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+
+4) WAQTD MAX SAL MIN SAL TOTAL SAL AND AVG SAL IF THE EMP NAME STARTS FROM S OR A 
+
+--> SELECT MAX(SAL) , MIN(SAL) , SUM(SAL) , AVG(SAL) FROM EMP WHERE FIRST_NAME LIKE 'S%' OR FIRST_NAME LIKE 'A%';
++-----------+----------+-----------+---------------+
+| MAX(SAL)  | MIN(SAL) | SUM(SAL)  | AVG(SAL)      |
++-----------+----------+-----------+---------------+
+| 500000.00 | 40000.00 | 725000.00 | 145000.000000 |
++-----------+----------+-----------+---------------+
+
+
+5) WAQTD THE NUMBER OF DIFFERENT JOB ROLES AVAILABLE IN THE COMPANY
+
+-->  SELECT  COUNT(DISTINCT JOB) FROM EMP;
++---------------------+
+| COUNT(DISTINCT JOB) |
++---------------------+
+|                   8 |
++---------------------+
+
+
+6) WAQTD THE FIRST HIRED EMP FROM THE COMPANY ;
+
+-- > 
+mysql> SELECT MIN(DOJ) FROM EMP;
++------------+
+| MIN(DOJ)   |
++------------+
+| 2016-01-16 |
++------------+
+
+7) WAQTD BIRTHDATE OF THE  YOUNGEST EMP 
+-->  SELECT Max(BIRTHDATE) FROM EMP;
++----------------+
+| Max(BIRTHDATE) |
++----------------+
+| 1999-09-21     |
++----------------+
+
+8) WAQTD NUMBER OF FEMALE EMP IN THE COMPANY
+
+-->  SELECT COUNT(*) FROM EMP WHERE GENDER='F';
++----------+
+| COUNT(*) |
++----------+
+|        7 |
++----------+
+
+
+9) WAQTD MAX(SAL) GIVEN TO SALESMAN ALONG WITH THE FIRST DOJ DATE OF THE SALESMAN
+
+-->  SELECT MAX(SAL) , MIN(DOJ) FROM EMP WHERE JOB='SALESMAN';
++----------+------------+
+| MAX(SAL) | MIN(DOJ)   |
++----------+------------+
+| 45000.00 | 2019-12-26 |
++----------+------------+
+
+10) WQATD NUMBER OF EMP WORKING IN DNO110 
+
+-->  SELECT COUNT(*) FROM EMP WHERE DNO=110;
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+
+11) WAQTD NUMBER OF EMP WORKING IN DN0111.
+
+--> 
+mysql> SELECT COUNT(*) FROM EMP WHERE DNO=111;
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+12) WAQTD NUMBER OF EMP WORKING IN DN0112.
+
+-->  SELECT COUNT(*) FROM EMP WHERE DNO=112;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+
+
+13) WAQTD NUMBER OF EMP WORKING IN DN0113.
+
+-->  SELECT COUNT(*) FROM EMP WHERE DNO=113;
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+
+
+
+14)  WAQTD THE NUMBER OF EMP WORKING IN EACH DEPT (BY USING GROUP BY CLAUSE) 
+
+ SELECT COUNT(*),DNO FROM EMP GROUP BY DNO;
++----------+------+
+| COUNT(*) | DNO  |
++----------+------+
+|        4 |  110 |
+|        4 |  111 |
+|        3 |  112 |
+|        4 |  113 |
++----------+------+
+
+15) WAQTD THE MAXIMUM SAL GIVEN TO THE EMP IN EACH DEPT IF THE EMP IS WORKING AS SALESMAN OR MANAGER OR CLERK
+
+-->  SELECT MAX(SAL) , DNO FROM EMP  WHERE JOB IN('SALESMAN' , 'MANAGER' , 'CLERK') GROUP BY DNO;
++-----------+------+
+| MAX(SAL)  | DNO  |
++-----------+------+
+|  90000.00 |  110 |
+| 100000.00 |  111 |
++-----------+------+
+
+
+16) WAQTD THE NUMBER OF EMP WORKING IN EACH JOB ROLE 
+
+-->  SELECT COUNT(*),JOB FROM EMP GROUP BY JOB;
++----------+------------+
+| COUNT(*) | JOB        |
++----------+------------+
+|        1 | CEO        |
+|        1 | HR         |
+|        2 | MANAGER    |
+|        3 | DISPATCHER |
+|        1 | TESTER     |
+|        3 | SALESMAN   |
+|        2 | DEVELOPER  |
+|        2 | ACCOUNTANT |
++----------+------------+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------12-04-2024-------------------------------------------------------------------------------------
+
+
+
+
