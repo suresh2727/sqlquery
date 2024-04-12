@@ -452,5 +452,125 @@ mysql> SELECT COUNT(*) FROM EMP WHERE DNO=111;
 -----------------------------------------------------------------------------------12-04-2024-------------------------------------------------------------------------------------
 
 
+1) WAQTD HIREDADTE OF THE EMPS WHO WERE HIRED FIRST IN THEIR RESPECTIVE DEPT
+-->  SELECT MIN(DOJ),DNO FROM EMP GROUP BY DNO;
++------------+------+
+| MIN(DOJ)   | DNO  |
++------------+------+
+| 2017-07-07 |  110 |
+| 2017-04-17 |  111 |
+| 2016-10-20 |  112 |
+| 2016-01-16 |  113 |
++------------+------+
+
+
+2) WAQTD THE MAX SAL GIVEN TO THE EMP IN EACH DEPT IF THE EMP SAL IS MORE THAN 35000 AND LESS THAN 70000
+
+-->  SELECT MAX(SAL) , DNO FROM EMP WHERE SAL BETWEEN 35001 AND 69999 GROUP BY DNO;
++----------+------+
+| MAX(SAL) | DNO  |
++----------+------+
+| 50000.00 |  110 |
+| 45000.00 |  111 |
+| 45000.00 |  113 |
++----------+------+
+
+
+3) WAQTD THE NUMBER OF EMP REPORTING MANAGER 
+
+-->SELECT COUNT(*), MGR FROM EMP GROUP BY MGR;
++----------+------+
+| COUNT(*) | MGR  |
++----------+------+
+|        1 | NULL |
+|        4 | 1601 |
+|        4 | 1602 |
+|        3 | 1702 |
+|        3 | 1701 |
++----------+------+
+
+
+4) WAQTD THE MAX SAL GIVEN TO THE EMP IN EACH DEPT IF THE SAL IS MORE THAN OR EQUAL TO 40000 AND MAX SAL LESS THAN OR EQUAL TO 100000
+
+-->  SELECT MAX(SAL) , DNO FROM EMP WHERE SAL>=40000 GROUP BY DNO HAVING MAX(SAL)<=100000;
++-----------+------+
+| MAX(SAL)  | DNO  |
++-----------+------+
+|  90000.00 |  110 |
+| 100000.00 |  111 |
++-----------+------+
+
+
+5) WAQTD NUMBER OF EMP WORKING IN EACH DNO IF THE DEPT CONTAINS ATLEAST 4 EMP IN THAT PATICULAR DEPT 
+
+-->  SELECT COUNT(*) , DNO FROM EMP GROUP BY DNO HAVING COUNT(*)>=4;
++----------+------+
+| COUNT(*) | DNO  |
++----------+------+
+|        4 |  110 |
+|        4 |  111 |
+|        4 |  113 |
++----------+------+
+
+
+6) WAQTD THE MAX SAL , MIN SAL EARNED BY THE EMPS IN EACH JOB IF THE MAX SAL > 90000 AND MINIMUN SAL < 40000
+
+-->  SELECT MAX(SAL) , MIN(SAL) ,JOB FROM EMP GROUP BY JOB HAVING MAX(SAL)>90000 AND MIN(SAL)<40000;
+Empty set (0.00 sec)
+
+7) WAQTD THE NUMBER OF EMP WHO WERE HIRED ON THE SAME DAY
+
+--> SELECT COUNT(*) , DOJ FROM EMP GROUP BY DOJ HAVING COUNT(DOJ)>1 ;
++----------+------------+
+| COUNT(*) | DOJ        |
++----------+------------+
+|        2 | 2020-03-15 |
++----------+------------+
+
+
+8) WAQTD THE NUMBER OF SAL IS GETTING SAME SAL
+
+-->  SELECT COUNT(*), SAL FROM EMP GROUP BY SAL HAVING COUNT(*) >1;
++----------+----------+
+| COUNT(*) | SAL      |
++----------+----------+
+|        5 | 45000.00 |
+|        2 | 30000.00 |
+|        2 | 32000.00 |
++----------+----------+
+
+
+9) WAQTD THE AVG SAL GIVEN TO ALL THE SALESMAN OR CLERK IF THE AVG SAL OF DEPT RANGES BETWEEN 30000 AND 70000
+
+--> 
+mysql> SELECT AVG(SAL) ,DNO FROM EMP WHERE JOB IN ('SALESMAN' , 'CLERK') GROUP BY DNO HAVING AVG(SAL) BETWEEN 30000 AND 70000;
++--------------+------+
+| AVG(SAL)     | DNO  |
++--------------+------+
+| 43333.333333 |  111 |
++--------------+------+
+
+10) WAQTD THE NUMBER OF EMP WHO ARE GETTING SAME SAL AND WORKING IN SAME DNO;
+
+--> 
+mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1;
++----------+----------+------+
+| COUNT(*) | SAL      | DNO  |
++----------+----------+------+
+|        2 | 45000.00 |  110 |
+|        2 | 45000.00 |  111 |
++----------+----------+------+
+
+
+11) WAQTD DETAILS OF EMP ARRANGED ACCORDING THE SAL FROM MAX TO MIN (ORDER BY FUNCTION) (TO DISPLAY ASC / DESC)
+--->  SELECT * FROM EMP ORDER BY SAL DESC;
+
+
+12) WAQTD DETAILS OF EMP IF THE  EMP IS MALE AND ARRANGE ALL THE RECOERDS TO FIRST_NAME IN ALPHABETICAL ORDER
+
+-->  SELECT * FROM EMP WHERE GENDER = 'M' ORDER BY FIRST_NAME ASC;
+
+
+
 
 
