@@ -572,5 +572,105 @@ mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1
 
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------15-04-2024-------------------------------------------------------------------
+
+1) WAQTD THE 5 RECORDS FROM THE EMP TABLE;(USING LIMIT ) 
+
+-->  SELECT * FROM EMP LIMIT 5;
+
+
+2)  WAQTD THE 10 RECORDS FROM THE EMP TABLE;
+
+--> SELECT * FROM EMP LIMIT 10;
+
+3)  WAQTD THE 2 RECORDS FROM THE EMP TABLE;
+
+--> SELECT * FROM EMP LIMIT 2;
+
+4) WAQTD 5 RECORDS HAVING MAX SAL
+
+-->  SELECT * FROM EMP  ORDER BY SAL DESC LIMIT 5;
+
+5) WAQTD TOP 8 SAL WITH NO REPETATION
+
+-->  SELECT DISTINCT SAL FROM EMP LIMIT 8;
+
+6) WAQTD THE 2ND RECORD 
+
+--> SELECT * FROM EMP LIMIT 1 OFFSET 1;
+
+7)  WAQTD THE 6TH RECORD
+
+--> SELECT * FROM EMP LIMIT 1 OFFSET 5;
+
+8) WAQTD THE 7TH RECORD
+
+--> SELECT * FROM EMP  LIMIT 1 OFFSET 6;
+
+9) WAQTD THE RECORDS FROM 5 TO 8 
+
+--> SELECT * FROM EMP  LIMIT 4 OFFSET 4;
+
+10) WAQTD 3RD MAX SAL 
+
+-->  SELECT DISTINCT SAL FROM EMP ORDER BY SAL DESC LIMIT 1 OFFSET 2 ;
+
+11) WAQTD 5 MIN SAL 
+
+-- >  SELECT DISTINCT SAL FROM EMP ORDER BY SAL ASC LIMIT 1 OFFSET 4;
+
+------CONCAT FUNCTION ---------------------
+*) WAQTD THE FIRST_NAME WITH JOB 
+
+-- > SELECT CONCAT('Mr. ' , FIRST_NAME , ' WORKS AS A ' , JOB ) FROM EMP WHERE GENDER='M';
++-----------------------------------------------------+
+| CONCAT('Mr. ' , FIRST_NAME , ' WORKS AS A ' , JOB ) |
++-----------------------------------------------------+
+| Mr. SIDDARTH WORKS AS A CEO                         |
+| Mr. RAHUL WORKS AS A MANAGER                        |
+| Mr. SAMEER WORKS AS A MANAGER                       |
+| Mr. ABHIJIT WORKS AS A DISPATCHER                   |
+| Mr. KARAN WORKS AS A SALESMAN                       |
+| Mr. MAURALI WORKS AS A DISPATCHER                   |
+| Mr. AMAN WORKS AS A SALESMAN                        |
+| Mr. KIRAN WORKS AS A ACCOUNTANT                     |
++-----------------------------------------------------+
+
+
+12 ) WAQTD THE EMP FIRST_NAME AND SALARY IN THE BELOW FORMAT ;
+     
+     'Mr SIDDARTH , YOU SALARY IS RS. 50000' 
+
+-->  SELECT CONCAT('MR ' , FIRST_NAME , ', YOUR SALARY IS RS . ' , SAL ) FROM EMP WHERE GENDER='M';
+
++--------------------------------------------------------------+
+| CONCAT('MR ' , FIRST_NAME , ', YOUR SALARY IS RS . ' , SAL ) |
++--------------------------------------------------------------+
+| MR SIDDARTH, YOUR SALARY IS RS . 500000.00                   |
+| MR RAHUL, YOUR SALARY IS RS . 100000.00                      |
+| MR SAMEER, YOUR SALARY IS RS . 90000.00                      |
+| MR ABHIJIT, YOUR SALARY IS RS . 50000.00                     |
+| MR KARAN, YOUR SALARY IS RS . 45000.00                       |
+| MR MAURALI, YOUR SALARY IS RS . 45000.00                     |
+| MR AMAN, YOUR SALARY IS RS . 40000.00                        |
+| MR KIRAN, YOUR SALARY IS RS . 30000.00                       |
++--------------------------------------------------------------+
+
+13) WAQTD THE DETAILS OF EMP IF THE EMP NAME STARTS WITH S;
+--> SELECT * FROM EMP WHERE SUBSTRING(FIRST_NAME , 1 ,1)='S';
+
+14) WAQTD  FIRST_NAME , LAST_NAME  WHERE FIRST_NAME ENDS WITH 'H'
+
+--> > SELECT FIRST_NAME , LAST_NAME FROM EMP WHERE SUBSTRING(FIRST_NAME , -1 , 1) = 'H';
++------------+-----------+
+| FIRST_NAME | LAST_NAME |
++------------+-----------+
+| SIDDARTH   | PATIL     |
++------------+-----------+
+
+
+
+
 
 
