@@ -669,6 +669,27 @@ mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1
 | SIDDARTH   | PATIL     |
 +------------+-----------+
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------16-04-2024------------------------------------------------------------------------
+
+1) WAQTD THE DETAILS OF EMP WHO WAS BORN DURING 1995
+
+-->   SELECT * FROM EMP WHERE SUBSTRING(BIRTHDATE , 1 , 4) = 1995;
+
+2) WAQTD DETAILS OF EMP IF THE FIRST HALF OF THE FIRST_NAME
+
+-->  SELECT SUBSTRING(FIRST_NAME , 1 , LENGTH(FIRST_NAME)/2)  FROM EMP;
+
+3) WAQTD FIRST HALF OF NAME IN LOWERCASE AND SECOND HALF OF UPPERCASE REVERSE ;
+
+-->  SELECT CONCAT(LOWER(SUBSTRING(FIRST_NAME ,1 , LENGTH(FIRST_NAME)/2))   , ' ' , REVERSE(UPPER(SUBSTRING(FIRST_NAME ,LENGTH(FIRST_NAME)/2+1 ))))  FROM
+ EMP;
+
+
+4) WAQTD DETAILS OF EMP WHO ARE HIRED IN MONTH OF NOV OR DEC
+
+--.  SELECT * FROM EMP WHERE SUBSTRING(DOJ , 6, 2) IN(11,12);
+
 
 
 
