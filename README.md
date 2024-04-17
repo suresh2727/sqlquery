@@ -691,6 +691,39 @@ mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1
 --.  SELECT * FROM EMP WHERE SUBSTRING(DOJ , 6, 2) IN(11,12);
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------17-04-2024------------------------------------------------------------------------------------------------------
+
+1) WAQTD DETAILS OF EMP WITH EMP DOES NOT START WITH VOWELS 
+
+-->SELECT * FROM EMP WHERE SUBSTRING(FIRST_NAME ,1,1) NOT IN('A','E','O','U','I');
+
+2) WAQTD FIRST_NAME AND LAST_NAME TOGETHER IN SINGLE COL
+
+--> SELECT CONCAT(FIRST_NAME,' ' ,LAST_NAME) AS "FULL NAME " FROM EMP;
+
+3) WAQTD THE DETAILS OF EMP IF THE EMP CONTAINS ATLEAST ONE A WITHOUT USING LIKE OPERATOR
+
+--->   SELECT * FROM EMP WHERE LENGTH(FIRST_NAME)-LENGTH(REPLACE(FIRST_NAME,'A','')) > 0;
+
+4) WAQTD  DETAILS OF EMP IF THE EMP NAME CONTAINS IN IT 2 A
+
+--> SELECT * FROM EMP WHERE LENGTH(FIRST_NAME)-LENGTH(REPLACE(FIRST_NAME,'A','')) >= 2;
+
+5) WAQTD DETAILS OF EMP IF THHE EMP NAME CONTAINS EXCATLY 2 'A'
+
+--> SELECT * FROM EMP WHERE LENGTH(FIRST_NAME)-LENGTH(REPLACE(FIRST_NAME,'A','')) = 2;
+
+6) WAQTD  THE EMP FIRST_NAME , SAL , COMM 
+
+-->  SELECT FIRST_NAME , SAL , COMM FROM EMP;
+
+7) WAQTD THE FIRST_NAME SAL ADDED WITH COMMM
+
+-->  SELECT FIRST_NAME , SAL + IFNULL(COMM,0) FROM EMP;
+
+
+
 
 
 
