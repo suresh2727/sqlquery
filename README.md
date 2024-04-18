@@ -724,6 +724,36 @@ mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1
 
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------18-04-2024---------------------------------------------------------------------------------------------------------------
+
+1) WQATD THE DETAILS OF EMP WHO ARE HIRED DURING 2020 BY USING DATE FORMATE(USING DATE FORMATE)  
+
+-->  SELECT * FROM EMP WHERE DATE_FORMAT(DOJ , '%Y') = 2020;
+
+2) WAQTD FIRST_NAME , LAST_NAME , BITHDATE IF THE EMP WAS BORN DURING THR YEAR 1995 TO 1998
+ 
+---> SELECT FIRST_NAME , LAST_NAME , BIRTHDATE FROM EMP WHERE DATE_FORMAT(BIRTHDATE , '%Y')  BETWEEN '1995' AND '1998';
+
+3) WAQTD THE DETAILS OF EMP WHO ARE HIRED IN THE MONTH OF NOV OR DECEMBER
+
+-->  SELECT * FROM EMP WHERE DATE_FORMAT(DOJ , '%m') IN (11,12); 
+
+4) WAQTD THE DETAILS OF EMP WHO WERE BORN ON SAT OR SUN
+-->  SELECT * FROM EMP WHERE DATE_FORMAT(BIRTHDATE , '%a') IN ('SAT' , 'SUN');
+
+5) WAQTD THE DETAILS OF EMP WHO WERE HIRED DURING THE LEAP YEAR
+
+-->  SELECT * FROM EMP WHERE MOD(DATE_FORMAT(DOJ,'%Y') , 4)=0;
+
+6) WAQTD FIRST_NAME , BIRTHDATE IN US FORMAT.
+
+--> SELECT FIRST_NAME , BIRTHDATE ,DATE_FORMAT(BIRTHDATE , '%m/%d/%Y') FROM EMP;
+
+
+
+
+
 
 
 
