@@ -748,7 +748,12 @@ mysql> SELECT COUNT(*) , SAL , DNO FROM EMP GROUP BY SAL , DNO HAVING COUNT(*)>1
 
 6) WAQTD FIRST_NAME , BIRTHDATE IN US FORMAT.
 
---> SELECT FIRST_NAME , BIRTHDATE ,DATE_FORMAT(BIRTHDATE , '%m/%d/%Y') FROM EMP;
+--> SELECT FIRST_NAME , BIRTHDATE ,DATE_FORMAT(BIRTHDATE , '%m/%d/%Y') FROM EMP; 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------22-04-2024------------------------------------------------------------------------------------------------------------
+
+
 
 
 
