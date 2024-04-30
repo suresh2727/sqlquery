@@ -854,6 +854,77 @@ ITY = 'MUMBAI')));
 --> SELECT DISTINCT SAL FROM EMP ORDER BY SAL DESC LIMIT 1 OFFSET 4;
 --> SELECT * FROM EMP WHERE SAL = (SELECT DISTINCT SAL FROM EMP ORDER BY SAL DESC LIMIT 1 OFFSET 4);
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------30-04-2024-----------------------------------------------------------------------------------------------------------
+
+1) WAQTD THE LAST 10 RECORDS  FROM THE EMP TABLE
+
+--> SELECT * FROM ( SELECT * FROM EMP ORDER BY EID DESC LIMIT 10) AS RESULT_TABLE ORDER BY EID ASC;
+
+2) WAQTD THE DETAILS OF EMP WHO ARE GETTING 5TH AND 6TH MAX SAL;
+
+-->  SELECT * FROM EMP WHERE SAL IN (SELECT SAL FROM (SELECT DISTINCT SAL FROM EMP ORDER BY SAL DESC LIMIT 2 OFFSET 4 ) AS RESULT_TABLE);
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| 1801 | JHNAVI     | NAIK      | 1996-04-11 | f      | DISPATCHER | 1702 | 2020-03-15 | 45000.00 | 1000.00 |  110 | NULL |
+| 1901 | SHIVANI    | RAI       | 1998-11-07 | f      | TESTER     | 1601 | 2019-12-12 | 45000.00 |    NULL |  113 |  502 |
+| 1902 | ABHIJIT    | GOWDA     | 1997-12-25 | M      | DISPATCHER | 1702 | 2019-02-28 | 50000.00 |    NULL |  110 |  505 |
+| 1903 | KARAN      | BHAT      | 1997-12-26 | M      | SALESMAN   | 1701 | 2019-12-26 | 45000.00 |    NULL |  111 | NULL |
+| 2001 | MAURALI    | KRISHNAN  | 1998-06-08 | M      | DISPATCHER | 1702 | 2020-03-15 | 45000.00 | 1000.00 |  110 | NULL |
+| 2101 | RASHMI     | GOWDA     | 1995-10-03 | f      | SALESMAN   | 1701 | 2021-01-02 | 45000.00 | 3000.00 |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+
+
+3) WAQTD WHO ARE GETTING 2ND and 3RD MIN SAL 
+
+--> SELECT * FROM EMP WHERE SAL IN(SELECT SAL FROM (SELECT DISTINCT SAL FROM EMP ORDER BY SAL ASC LIMIT 2 OFFSET 1) AS RESULT_TABLE);
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| 2102 | FARIYA     | TAJ       | 1999-01-03 | f      | DEVELOPER  | 1601 | 2021-03-01 | 32000.00 | 3600.00 |  113 | NULL |
+| 2103 | PRIYA      | SHETTY    | 1998-03-20 | f      | ACCOUNTANT | 1602 | 2021-05-01 | 32000.00 | 3600.00 |  112 | NULL |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN   | 1701 | 2021-12-26 | 40000.00 |    NULL |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+
+
+4) WAQTD DETAILS OF EMP WHO WORKS IN MYSORE
+
+-->  SELECT * FROM EMP WHERE DNO IN (SELECT DNO FROM DEPT WHERE LID IN(SELECT LID FROM LOCATION WHERE CITY = 'MYSORE'));
+
+5) WAQTD NUMBER OF EMPS WHO ARE GETTING SAME SAL 
+
+-->  SELECT COUNT(*), SAL FROM EMP GROUP BY SAL HAVING COUNT(*)>1;
+
+6) WAQTD THE DETAILS OF EMP WHO ARE GETTING SAME SAL;
+
+--> SELECT * FROM EMP WHERE SAL IN (SELECT SAL FROM EMP GROUP BY SAL HAVING COUNT(*)>1);
+
+7) WAQTD THE DETAILS OF EMP WHO ARE GETTING SAME SALARY AND WORKING IN SAME DEPT 
+
+-->  SELECT * FROM EMP WHERE SAL IN (SELECT SAL FROM EMP GROUP BY SAL,DNO HAVING COUNT(*)>1) AND DNO IN  (SELECT DNO FROM EMP GROUP BY SAL,DNO HAVING COUN
+T(*)>1);
+
+8) WAQTD THE DETAILS OF HEMA'S MANAGER
+
+-->  SELECT * FROM EMP WHERE EID IN (SELECT MGR FROM EMP WHERE FIRST_NAME = 'HEMA');
+
+
+9) WAQTD THE DETAILS OF DHARANI'S MANAGER
+
+--> SELECT * FROM EMP WHERE EID IN (SELECT MGR FROM EMP WHERE FIRST_NAME = 'DHARANI');
+
+10) WAQTD THE DEPT NAME OF SAMEER'S MANAGER
+
+-->  SELECT DNAME FROM DEPT WHERE DNO IN(SELECT DNO FROM EMP WHERE EID IN (SELECT MGR FROM EMP WHERE FIRST_NAME = 'SAMEER'));
+
+11) WAQTD THE LOCATION NAME, CITY AND STATE OF KARAN'S MANAGER
+
+-->  SELECT * FROM LOCATION WHERE LID IN(SELECT LID FROM DEPT WHERE DNO IN(SELECT DNO FROM EMP WHERE EID IN (SELECT MGR FROM EMP WHERE FIRST_NAME = 'KARAN
+')));
+
+
+
 
 
 
