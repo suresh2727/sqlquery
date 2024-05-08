@@ -1079,6 +1079,31 @@ NNER JOIN DEPT D2 ON E2.DNO=D2.DNO INNER JOIN LOCATION L1 ON D1.LID = L1.LID INN
 
 --> SELECT E3.* FROM EMP E1 JOIN EMP E2 ON E1.MGR=E2.EID JOIN EMP E3 ON E3.SAL > E2.SAL WHERE E1.FIRST_NAME = 'SAMEER';
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------08-05-2024-------------------------------------------------------------------------------------------------------------------------------------------
+
+1) WAQTD DETAILS OF THE DEPT IF THE EMP IS WORKING OR NOT 
+
+-->  SELECT * FROM EMP E1 RIGHT OUTER JOIN DEPT D1 ON E1.DNO = D1.DNO;
+
+2) WAQTD DETAILS WHERE NO EMP IS WORKING 
+
+--> SELECT D1.* FROM EMP E1 RIGHT OUTER JOIN DEPT D1 ON E1.DNO = D1.DNO WHERE E1.DNO IS NULL;
+
+3) WAQTD THE DETAILS OF EMP WHO ARE NOT WORKING AS REPORTING MANAGER;
+
+-->   select e2.* , e1.first_name from emp e1 right outer join emp e2 on e1.mgr=e2.eid where e1.eid is null;
+
+4) WAQTD THE DETAILS OF LOCATION WHERE NO DEPT ARE LOCATED OVER THERE
+
+--> SELECT L1.* FROM LOCATION L1 LEFT OUTER JOIN DEPT D1 ON L1.LID=D1.LID WHERE D1.LID IS NULL;
+
+5) WAQTD THE DETAILS OF LOCATION DETAILS WHERE NO CUSTOMER ARE THERE FROM THAT LOCATION
+
+-->  SELECT L1.* FROM CUSTOMER C1 RIGHT OUTER JOIN LOCATION L1 ON C1.LID=L1.LID WHERE C1.LID IS NULL ;
+
+
+
 
 
 
