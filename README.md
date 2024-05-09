@@ -1102,6 +1102,13 @@ NNER JOIN DEPT D2 ON E2.DNO=D2.DNO INNER JOIN LOCATION L1 ON D1.LID = L1.LID INN
 
 -->  SELECT L1.* FROM CUSTOMER C1 RIGHT OUTER JOIN LOCATION L1 ON C1.LID=L1.LID WHERE C1.LID IS NULL ;
 
+-------------------------------------------------------------------------------------------------------------------------
+-----------------------------09-05-2024---------------------------------------------------------------------------------
+1) WAQTD THE FIRST_NAME OF EMP IF THE EMP ARE WORKING AS SALESMAN IF THEY ARE NOT WORKING AS SALESMAN DISPLAY THE NAME IN REVERSE CASE ;
+
+-->  SELECT FIRST_NAME FROM EMP WHERE JOB='SALESMAN' UNION SELECT REVERSE(FIRST_NAME) FROM EMP WHERE JOB !='SALESMAN';
+
+
 
 
 
