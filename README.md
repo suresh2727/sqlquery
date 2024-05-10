@@ -1109,6 +1109,27 @@ NNER JOIN DEPT D2 ON E2.DNO=D2.DNO INNER JOIN LOCATION L1 ON D1.LID = L1.LID INN
 -->  SELECT FIRST_NAME FROM EMP WHERE JOB='SALESMAN' UNION SELECT REVERSE(FIRST_NAME) FROM EMP WHERE JOB !='SALESMAN';
 
 
+ SELECT NODES,
+    -> CASE
+    -> WHEN PARENT IS NULL THEN 'ROOT'
+    -> WHEN NODES IN(SELECT DISTINCT PARENT FROM TREENODE) THEN 'INNER'
+    -> ELSE 'LEAF'
+    -> END AS NODE_TYPE
+    -> FROM TREENODE;
++-------+-----------+
+| NODES | NODE_TYPE |
++-------+-----------+
+|    15 | ROOT      |
+|    10 | INNER     |
+|     5 | INNER     |
+|     3 | LEAF      |
+|     4 | LEAF      |
+|     6 | LEAF      |
+|     7 | LEAF      |
++-------+-----------+
+
+
+
 
 
 
