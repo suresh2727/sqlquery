@@ -1127,7 +1127,225 @@ NNER JOIN DEPT D2 ON E2.DNO=D2.DNO INNER JOIN LOCATION L1 ON D1.LID = L1.LID INN
 |     6 | LEAF      |
 |     7 | LEAF      |
 +-------+-----------+
-----------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------13-05-20224-------------------------------------------------------------------------------------------------------------------------
+
+1) WAQTD DETAILS OF EMP WHOSE NAME START WITH A
+
+--> 
+mysql> SELECT * FROM EMP WHERE FIRST_NAME LIKE 'A%';
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+| 1902 | ABHIJIT    | GOWDA     | 1997-12-25 | M      | DISPATCHER | 1702 | 2019-02-28 | 50000.00 | NULL |  110 |  505 |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN   | 1701 | 2021-12-26 | 40000.00 | NULL |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+
+SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^A';
+
+
+
+2) WAQTD DETAILS OF EMP WHOSE NAMES START WITH A OR S
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME LIKE 'A%' OR FIRST_NAME LIKE 'S%';
++------+------------+-----------+------------+--------+------------+------+------------+-----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL       | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+------+------+------+
+| 1601 | SIDDARTH   | PATIL     | 1985-11-24 | M      | CEO        | NULL | 2016-01-16 | 500000.00 | NULL |  113 | NULL |
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER    | 1602 | 2017-07-07 |  90000.00 | NULL |  110 | NULL |
+| 1901 | SHIVANI    | RAI       | 1998-11-07 | f      | TESTER     | 1601 | 2019-12-12 |  45000.00 | NULL |  113 |  502 |
+| 1902 | ABHIJIT    | GOWDA     | 1997-12-25 | M      | DISPATCHER | 1702 | 2019-02-28 |  50000.00 | NULL |  110 |  505 |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN   | 1701 | 2021-12-26 |  40000.00 | NULL |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+------+------+------+
+
+
+
+--> SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^A' OR FIRST_NAME RLIKE '^S';
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^(A|S)';
+
+
+
+3) WAQTD  THE DETAILS  OF EMP NAMES START WITH VOWELS
+
+--> SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^(A|E|I|O|U)';
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+| 1902 | ABHIJIT    | GOWDA     | 1997-12-25 | M      | DISPATCHER | 1702 | 2019-02-28 | 50000.00 | NULL |  110 |  505 |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN   | 1701 | 2021-12-26 | 40000.00 | NULL |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+------+------+------+
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^[AEIOU]';
+
+
+
+
+4) WAQTD THE DETAILS OF EMP WHOSE NAME START FROM A TO F
+
+--> SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^[ABCDEF]';
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| 1902 | ABHIJIT    | GOWDA     | 1997-12-25 | M      | DISPATCHER | 1702 | 2019-02-28 | 50000.00 |    NULL |  110 |  505 |
+| 2002 | DHARANI    | PATIL     | 1998-11-10 | f      | DEVELOPER  | 1601 | 2021-06-20 | 30000.00 | 3000.00 |  113 | NULL |
+| 2102 | FARIYA     | TAJ       | 1999-01-03 | f      | DEVELOPER  | 1601 | 2021-03-01 | 32000.00 | 3600.00 |  113 | NULL |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN   | 1701 | 2021-12-26 | 40000.00 |    NULL |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^[A-F]';
+
+
+
+5) WAQTD THE DETAILS OF EMP WHOSE NAMES STARTS FROM P-Z 
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^[P-Z]';
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL       | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| 1601 | SIDDARTH   | PATIL     | 1985-11-24 | M      | CEO        | NULL | 2016-01-16 | 500000.00 |    NULL |  113 | NULL |
+| 1701 | RAHUL      | MUKARJEE  | 1991-02-19 | M      | MANAGER    | 1602 | 2017-04-17 | 100000.00 |    NULL |  111 | NULL |
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER    | 1602 | 2017-07-07 |  90000.00 |    NULL |  110 | NULL |
+| 1901 | SHIVANI    | RAI       | 1998-11-07 | f      | TESTER     | 1601 | 2019-12-12 |  45000.00 |    NULL |  113 |  502 |
+| 2101 | RASHMI     | GOWDA     | 1995-10-03 | f      | SALESMAN   | 1701 | 2021-01-02 |  45000.00 | 3000.00 |  111 | NULL |
+| 2103 | PRIYA      | SHETTY    | 1998-03-20 | f      | ACCOUNTANT | 1602 | 2021-05-01 |  32000.00 | 3600.00 |  112 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+
+
+
+6) WAQTD THE DETAILS OF EMP WHOSE NAMES ENDS WITH I
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME LIKE '%I';
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE 'I$';
+
+
+7) WAQTD THE DETAILS OF EMP WHOSE NAMES ENDS WITH I OR H
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '[IH]$';
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '(I|H)$';
+
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL       | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| 1601 | SIDDARTH   | PATIL     | 1985-11-24 | M      | CEO        | NULL | 2016-01-16 | 500000.00 |    NULL |  113 | NULL |
+| 1801 | JHNAVI     | NAIK      | 1996-04-11 | f      | DISPATCHER | 1702 | 2020-03-15 |  45000.00 | 1000.00 |  110 | NULL |
+| 1901 | SHIVANI    | RAI       | 1998-11-07 | f      | TESTER     | 1601 | 2019-12-12 |  45000.00 |    NULL |  113 |  502 |
+| 2001 | MAURALI    | KRISHNAN  | 1998-06-08 | M      | DISPATCHER | 1702 | 2020-03-15 |  45000.00 | 1000.00 |  110 | NULL |
+| 2002 | DHARANI    | PATIL     | 1998-11-10 | f      | DEVELOPER  | 1601 | 2021-06-20 |  30000.00 | 3000.00 |  113 | NULL |
+| 2101 | RASHMI     | GOWDA     | 1995-10-03 | f      | SALESMAN   | 1701 | 2021-01-02 |  45000.00 | 3000.00 |  111 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+
+
+
+8) WAQTD THE NAMES WHICH ENDS WITH VOEWLS 
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME RLIKE '[AEIOU]$';
+-->  SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '[AEIOU]$';
++------------+
+| FIRST_NAME |
++------------+
+| HEMA       |
+| JHNAVI     |
+| SHIVANI    |
+| MAURALI    |
+| DHARANI    |
+| RASHMI     |
+| FARIYA     |
+| PRIYA      |
++------------+
+
+9) WAQTD DETAILS OF EMP WHOSE NAMES DOES NOT START WITH A-I
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME NOT RLIKE '^[A-I]';
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL       | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| 1601 | SIDDARTH   | PATIL     | 1985-11-24 | M      | CEO        | NULL | 2016-01-16 | 500000.00 |    NULL |  113 | NULL |
+| 1701 | RAHUL      | MUKARJEE  | 1991-02-19 | M      | MANAGER    | 1602 | 2017-04-17 | 100000.00 |    NULL |  111 | NULL |
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER    | 1602 | 2017-07-07 |  90000.00 |    NULL |  110 | NULL |
+| 1801 | JHNAVI     | NAIK      | 1996-04-11 | f      | DISPATCHER | 1702 | 2020-03-15 |  45000.00 | 1000.00 |  110 | NULL |
+| 1901 | SHIVANI    | RAI       | 1998-11-07 | f      | TESTER     | 1601 | 2019-12-12 |  45000.00 |    NULL |  113 |  502 |
+| 1903 | KARAN      | BHAT      | 1997-12-26 | M      | SALESMAN   | 1701 | 2019-12-26 |  45000.00 |    NULL |  111 | NULL |
+| 2001 | MAURALI    | KRISHNAN  | 1998-06-08 | M      | DISPATCHER | 1702 | 2020-03-15 |  45000.00 | 1000.00 |  110 | NULL |
+| 2101 | RASHMI     | GOWDA     | 1995-10-03 | f      | SALESMAN   | 1701 | 2021-01-02 |  45000.00 | 3000.00 |  111 | NULL |
+| 2103 | PRIYA      | SHETTY    | 1998-03-20 | f      | ACCOUNTANT | 1602 | 2021-05-01 |  32000.00 | 3600.00 |  112 | NULL |
+| 2201 | KIRAN      | RAJ       | 1999-09-21 | M      | ACCOUNTANT | 1602 | 2022-08-28 |  30000.00 | 3600.00 |  112 |  503 |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+
+
+10) WAQTD DETAILS OF EMP WHOSE NAME CONTAINS EXACTLY 6 CHAR 
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME LIKE '______';
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER    | 1602 | 2017-07-07 | 90000.00 |    NULL |  110 | NULL |
+| 1801 | JHNAVI     | NAIK      | 1996-04-11 | f      | DISPATCHER | 1702 | 2020-03-15 | 45000.00 | 1000.00 |  110 | NULL |
+| 2101 | RASHMI     | GOWDA     | 1995-10-03 | f      | SALESMAN   | 1701 | 2021-01-02 | 45000.00 | 3000.00 |  111 | NULL |
+| 2102 | FARIYA     | TAJ       | 1999-01-03 | f      | DEVELOPER  | 1601 | 2021-03-01 | 32000.00 | 3600.00 |  113 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME  RLIKE '^......$';
+
+-->  SELECT * FROM EMP WHERE FIRST_NAME  RLIKE '^.{6}$';
+
+
+11) WAQTD THE DETAILS OF EMP WHO HAS EXACTLY 4 CHAR
+
+--> SELECT * FROM EMP WHERE FIRST_NAME  RLIKE '^.{4}$';
++------+------------+-----------+------------+--------+----------+------+------------+-----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB      | MGR  | DOJ        | SAL       | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+----------+------+------------+-----------+------+------+------+
+| 1602 | HEMA       | SHETTY    | 1996-03-20 | F      | HR       | 1601 | 2016-10-20 | 150000.00 | NULL |  112 |  507 |
+| 2104 | AMAN       | RAI       | 1998-08-15 | M      | SALESMAN | 1701 | 2021-12-26 |  40000.00 | NULL |  111 | NULL |
++------+------------+-----------+------------+--------+----------+------+------------+-----------+------+------+------+
+
+
+12) WAQTD SAL , ANNUAL SAL , IF THE EMP IS GETTING 7 DIGIT SAL 
+
+-->  SELECT SAL , SAL*12 AS 'ANNUAL_SAL' FROM EMP WHERE SAL*12 RLIKE '.{7}\..{2}';
+
+--> SELECT SAL , SAL*12 AS 'ANNUAL_SAL' FROM EMP WHERE SAL*12 LIKE '_______.__';
+
+
+13) WAQTD DETAILS OF EMP IF THE EMP JOB CONTAINS MAN IN IT;
+
+-->  SELECT * FROM EMP WHERE JOB  RLIKE '(MAN)';
+
+
+14)  WAQTD DETAILS OF EMP WHO ARE HIRED DURING THE YEAR 2020
+
+-->  SELECT * FROM EMP WHERE DOJ RLIKE '^(2020)';
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL      | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+| 1801 | JHNAVI     | NAIK      | 1996-04-11 | f      | DISPATCHER | 1702 | 2020-03-15 | 45000.00 | 1000.00 |  110 | NULL |
+| 2001 | MAURALI    | KRISHNAN  | 1998-06-08 | M      | DISPATCHER | 1702 | 2020-03-15 | 45000.00 | 1000.00 |  110 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+----------+---------+------+------+
+
+
+
+-->  SELECT * FROM EMP WHERE DOJ LIKE '2020%';
+
+
+15) WAQTD DETAILS OF EMP WHO WERE HIRED DURING THE MONTH OF APRIL OR MAY 
+
+--> SELECT * FROM EMP WHERE DOJ RLIKE '^.{5}(04|05)';
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB        | MGR  | DOJ        | SAL       | COMM    | DNO  | CID  |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+| 1701 | RAHUL      | MUKARJEE  | 1991-02-19 | M      | MANAGER    | 1602 | 2017-04-17 | 100000.00 |    NULL |  111 | NULL |
+| 2103 | PRIYA      | SHETTY    | 1998-03-20 | f      | ACCOUNTANT | 1602 | 2021-05-01 |  32000.00 | 3600.00 |  112 | NULL |
++------+------------+-----------+------------+--------+------------+------+------------+-----------+---------+------+------+
+
+16) WAQTD THE DETIALS OF EMP WHOSE NAME CONTAINS ALTEAST 2 A
+
+
+--> SELECT * FROM EMP WHERE FIRST_NAME LIKE '%A%A%';
+
 
 
 
