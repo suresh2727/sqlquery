@@ -1347,6 +1347,73 @@ SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^A';
 --> SELECT * FROM EMP WHERE FIRST_NAME LIKE '%A%A%';
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------14-05-2024-------------------------------------------------------------------------------------------------------------------------------------
+
+1) WAQTD THE NAMES OF EMP IF THE NAMES START WITH VOWELS 
+
+-->  SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '^[AEIOU]';
++------------+
+| FIRST_NAME |
++------------+
+| ABHIJIT    |
+| AMAN       |
++------------+
+
+
+2) WAQTD THE NAMES OF EMP IF THE NAMES ENDS WITH VOWELS 
+
+-->  SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '[AEIOU]$';
++------------+
+| FIRST_NAME |
++------------+
+| HEMA       |
+| JHNAVI     |
+| SHIVANI    |
+| MAURALI    |
+| DHARANI    |
+| RASHMI     |
+| FARIYA     |
+| PRIYA      |
++------------+
+
+
+
+3) WAQTD THE DETAILS OF EMP WHICH STARTS WITH VOWELS AND ENDS WITH VOWELS 
+
+--> SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '^[AEIOU]'.*'[AEIOU]$';
+
+
+4) WAQTD THE DETAILS OF EMP WHOSE NAME STARTS WITH A-F AND END WITH A-K
+
+-->  SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '^[A-F].*[A-K]$';
++------------+
+| FIRST_NAME |
++------------+
+| DHARANI    |
+| FARIYA     |
++------------+
+
+
+5) WAQTD THE NAMES OF THE EMP WHICH CONTAIN 'AR' IN IT.
+
+--> SELECT FIRST_NAME FROM EMP WHERE FIRST_NAME RLIKE '(AR)';
++------------+
+| FIRST_NAME |
++------------+
+| SIDDARTH   |
+| KARAN      |
+| DHARANI    |
+| FARIYA     |
++------------+
+
+
+6) WAQTD NAMES OF EMP WHICH CONTAINS EXACTLY ONE A 
+
+-->  SELECT * FROM EMP WHERE LENGTH(FIRST_NAME)-LENGTH(REPLACE(FIRST_NAME,'A',''))=1;
+
+
+
 
 
 
