@@ -1413,9 +1413,74 @@ SELECT * FROM EMP WHERE FIRST_NAME RLIKE '^A';
 -->  SELECT * FROM EMP WHERE LENGTH(FIRST_NAME)-LENGTH(REPLACE(FIRST_NAME,'A',''))=1;
 
 ------------------------------------------------------------------15-05-2024-------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+------------------------------------------------------------------25-05-2024---------------------------------------------------------------------------------
 
+1) We can copy one table to another table 
+--yesssss
+
+CREATE TABLE EMP1 AS (SELECT * FROM EMP );
+
+
+2) CAN WE ABLE TO COPY ONLY THE STRUCTURE OF TABLE
+
+--> YES
+
+-->  create table emp2 as (select * from emp WHERE FIRST_NAME='SURESH');
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> DESC EMP2;
++------------+------------------------+------+-----+---------+-------+
+| Field      | Type                   | Null | Key | Default | Extra |
++------------+------------------------+------+-----+---------+-------+
+| EID        | int unsigned           | NO   |     | NULL    |       |
+| FIRST_NAME | varchar(20)            | NO   |     | NULL    |       |
+| LAST_NAME  | varchar(20)            | NO   |     | NULL    |       |
+| BIRTHDATE  | date                   | NO   |     | NULL    |       |
+| GENDER     | varchar(2)             | NO   |     | NULL    |       |
+| JOB        | varchar(15)            | NO   |     | NULL    |       |
+| MGR        | int unsigned           | YES  |     | NULL    |       |
+| DOJ        | date                   | NO   |     | NULL    |       |
+| SAL        | decimal(12,2) unsigned | NO   |     | NULL    |       |
+| COMM       | decimal(12,2)          | YES  |     | NULL    |       |
+| DNO        | int unsigned           | YES  |     | NULL    |       |
+| CID        | int unsigned           | YES  |     | NULL    |       |
++------------+------------------------+------+-----+---------+-------+
+12 rows in set (0.01 sec)
+
+
+--------------------------------------------------------------------VIEW------------------------------------
+
+CREATE VIEW MANAGER_DATA AS (SELECT * FROM EMP WHERE JOB='MANAGER');
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM MANAGER_DATA;
++------+------------+-----------+------------+--------+---------+------+------------+-----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB     | MGR  | DOJ        | SAL       | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+---------+------+------------+-----------+------+------+------+
+| 1701 | RAHUL      | MUKARJEE  | 1991-02-19 | M      | MANAGER | 1602 | 2017-04-17 | 100000.00 | NULL |  111 | NULL |
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER | 1602 | 2017-07-07 |  90000.00 | NULL |  110 | NULL |
++------+------------+-----------+------------+--------+---------+------+------------+-----------+------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE FROM EMP SET SAL=95000 WHERE FIRST_NAME = 'RAHUL'
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM EMP SET SAL=95000 WHERE FIRST_NAME = 'RAHUL'' at line 1
+mysql> UPDATE  EMP SET SAL=95000 WHERE FIRST_NAME = 'RAHUL';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM MANAGER_DATA;
++------+------------+-----------+------------+--------+---------+------+------------+----------+------+------+------+
+| EID  | FIRST_NAME | LAST_NAME | BIRTHDATE  | GENDER | JOB     | MGR  | DOJ        | SAL      | COMM | DNO  | CID  |
++------+------------+-----------+------------+--------+---------+------+------------+----------+------+------+------+
+| 1701 | RAHUL      | MUKARJEE  | 1991-02-19 | M      | MANAGER | 1602 | 2017-04-17 | 95000.00 | NULL |  111 | NULL |
+| 1702 | SAMEER     | KHAN      | 1995-04-20 | M      | MANAGER | 1602 | 2017-07-07 | 90000.00 | NULL |  110 | NULL |
++------+------------+-----------+------------+--------+---------+------+------------+----------+------+------+------+
+2 rows in set (0.00 sec)
 
 
 
