@@ -1,4 +1,4 @@
-# sqlqueryy
+# sqlquery
 
 1 ) WRITE A QUERY TO DISPLAY FIRST_NAME AND LAST_NAME FROM QUERY
 
